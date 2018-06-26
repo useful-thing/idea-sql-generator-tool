@@ -6,6 +6,7 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.psi.PsiElement;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.yseasony.sqlgenerator.children.DeleteSqlGeneratorAction;
@@ -38,14 +39,20 @@ public class SqlGeneratorAction extends ActionGroup {
     @NotNull
     @Override
     public AnAction[] getChildren(@Nullable AnActionEvent anActionEvent) {
-        return new AnAction[]{new SelectSqlGeneratorAction(),
-                new SelectSqlGeneratorAction.NamedParameterSqlGeneratorAction(),
-                new InsertSqlGeneratorAction(),
-                new InsertSqlGeneratorAction.NamedParameterSqlGeneratorAction(),
-                new DeleteSqlGeneratorAction(),
-                new DeleteSqlGeneratorAction.NamedParameterSqlGeneratorAction(),
-                new UpdateSqlGeneratorAction(),
-                new UpdateSqlGeneratorAction.NamedParameterSqlGeneratorAction()};
+        return new AnAction[]{
+            new SelectSqlGeneratorAction(),
+            new SelectSqlGeneratorAction.NamedPlaceholderSqlGeneratorAction(":", ""),
+            new SelectSqlGeneratorAction.NamedPlaceholderSqlGeneratorAction("#{", "}"),
+            new InsertSqlGeneratorAction(),
+            new InsertSqlGeneratorAction.NamedPlaceholderSqlGeneratorAction(":", ""),
+            new InsertSqlGeneratorAction.NamedPlaceholderSqlGeneratorAction("#{", "}"),
+            new DeleteSqlGeneratorAction(),
+            new DeleteSqlGeneratorAction.NamedPlaceholderSqlGeneratorAction(":", ""),
+            new DeleteSqlGeneratorAction.NamedPlaceholderSqlGeneratorAction("#{", "}"),
+            new UpdateSqlGeneratorAction(),
+            new UpdateSqlGeneratorAction.NamedPlaceholderSqlGeneratorAction(":", ""),
+            new UpdateSqlGeneratorAction.NamedPlaceholderSqlGeneratorAction("#{", "}"),
+        };
     }
 
 }

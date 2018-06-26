@@ -18,7 +18,7 @@ public class SqlGenerator {
     }
 
     public String getWhereClause() {
-        return Util.makeWhereClause(tableInfo.getPrimaryKeys());
+        return Util.makeNormalWhereClause(tableInfo.getPrimaryKeys());
     }
 
     public String getInsertValues() {

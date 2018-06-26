@@ -30,10 +30,16 @@ public class SelectSqlGeneratorAction extends BaseSqlGenerator {
         return "SELECT";
     }
 
-    public static class NamedParameterSqlGeneratorAction extends SelectSqlGeneratorAction {
+    public static class NamedPlaceholderSqlGeneratorAction extends SelectSqlGeneratorAction {
 
-        public NamedParameterSqlGeneratorAction() {
-            super("select sql generator (named parameter)");
+
+        String prefix;
+        String suffix;
+
+        public NamedPlaceholderSqlGeneratorAction(String prefix, String suffix) {
+            super("select sql generator    " + prefix + "param" + suffix);
+            this.prefix = prefix;
+            this.suffix = suffix;
         }
 
         @Override
@@ -41,7 +47,8 @@ public class SelectSqlGeneratorAction extends BaseSqlGenerator {
             return new SqlGenerator(tableInfo) {
                 @Override
                 public String getWhereClause() {
-                    return Util.makeNamedWhereClause(tableInfo.getPrimaryKeys());
+                    return Util.makeNamedPlaceholderWhereClause(tableInfo.getPrimaryKeys(), prefix,
+                        suffix);
                 }
             };
         }

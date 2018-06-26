@@ -1,12 +1,13 @@
-<idea-plugin version="2">
-  <id>org.yseasony.sqlgenerator</id>
+<idea-plugin>
+  <id>org.desslee.sqlgenerator</id>
   <name>Sql Generator</name>
-  <version>2.1.1</version>
-  <vendor email="yseasony@gmail.com" url="https://github.com/yseasony">yseasony</vendor>
+  <version>2.2</version>
+  <vendor email="" url="https://github.com/useful-thing/idea-sql-generator-tool">desslee</vendor>
 
   <description>
     <![CDATA[
             <h1>idea Sql Generator plugin</h1><br/>
+            <h2>fork from https://github.com/yseasony/idea-sql-generator-tool</h2><br/>
             <ul>
                 <li>Easy Sql Generator</li>
                 <li>How to use, github: <a href="https://github.com/yseasony/idea-sql-generator-tool">https://github.com/yseasony/idea-sql-generator-tool</a></li>
@@ -21,6 +22,10 @@
     <![CDATA[
             <h1>idea Sql Generator plugin</h1><br/>
             <ul>
+                <li>
+                    Sql Generator v2.2<br/>
+                    support placeholder params
+                </li>
                 <li>
                     Sql Generator v2.1.1<br/>
                     DataGrip version number

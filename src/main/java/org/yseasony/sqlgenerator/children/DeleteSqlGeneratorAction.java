@@ -25,18 +25,21 @@ public class DeleteSqlGeneratorAction extends BaseSqlGenerator {
         return "DELETE FROM $TABLE_NAME$ $WHERE_CLAUSE$";
     }
 
-    public static class NamedParameterSqlGeneratorAction extends DeleteSqlGeneratorAction {
+    public static class NamedPlaceholderSqlGeneratorAction extends DeleteSqlGeneratorAction {
+        String prefix;
+        String suffix;
 
-        public NamedParameterSqlGeneratorAction() {
-            super("delete sql generator (named parameter)");
+        public NamedPlaceholderSqlGeneratorAction(String prefix, String suffix) {
+            super("delete sql generator    " + prefix + "param" + suffix);
+            this.prefix = prefix;
+            this.suffix = suffix;
         }
-
         @Override
         protected SqlGenerator createSqlGenerator(final TableInfo tableInfo) {
             return new SqlGenerator(tableInfo) {
                 @Override
                 public String getWhereClause() {
-                    return Util.makeNamedWhereClause(tableInfo.getPrimaryKeys());
+                    return Util.makeNamedPlaceholderWhereClause(tableInfo.getPrimaryKeys(), prefix, suffix);
                 }
             };
         }

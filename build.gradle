@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        mavenCentral()
         maven {
             url "https://plugins.gradle.org/m2/"
         }
@@ -8,17 +9,15 @@ buildscript {
         }
 
     }
-    dependencies {
-        classpath "gradle.plugin.org.jetbrains.intellij.plugins:gradle-intellij-plugin:0.2.17"
-    }
 }
 
 plugins {
-    id "org.jetbrains.intellij" version "0.2.17"
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.3.4'
 }
 
-group 'org.yseasony'
-version '2.1.2'
+group 'idea-plugin'
+version '1.0-SNAPSHOT'
 
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
@@ -32,14 +31,13 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compileOnly fileTree(include: ['*.jar'], dir: ideaSDKlocalPath + '/Contents/plugins/DatabaseTools/lib')
+    compileOnly fileTree(include: ['*.jar'], dir: ideaSDKlocalPath + '\\plugins\\DatabaseTools\\lib')
 }
 
-
-
 intellij {
-    localPath ideaSDKlocalPath //调试我们插件的版本
+    version '2018.1.4'
     pluginName 'Sql Generator'
+    plugins 'coverage' //Bundled plugin dependencies
     sandboxDirectory = project.rootDir.canonicalPath + "/.sandbox" //插件生成的临时文件的地址
 }
 
@@ -47,3 +45,8 @@ patchPluginXml {
     sinceBuild 143
     untilBuild ''
 }
+
+
+
+
+
